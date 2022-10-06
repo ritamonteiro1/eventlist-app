@@ -6,8 +6,12 @@ import com.example.featurehome.domain.model.User
 import com.example.featurehome.domain.repository.EventRepository
 
 class DoCheckInUseCase(private val repository: EventRepository) :
-    UseCase<User, Result<Unit>>() {
-    override suspend fun call(params: User): Result<Unit> {
-        return repository.doCheckIn(params)
+    UseCase<DoCheckInUseCase.Params, Unit>() {
+    override suspend fun call(params: Params): Result<Unit> {
+        return repository.doCheckIn(params.user)
     }
+
+    data class Params(
+        val user: User
+    )
 }

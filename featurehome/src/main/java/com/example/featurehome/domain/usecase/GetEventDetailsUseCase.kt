@@ -6,8 +6,12 @@ import com.example.featurehome.domain.model.EventDetails
 import com.example.featurehome.domain.repository.EventRepository
 
 class GetEventDetailsUseCase(private val repository: EventRepository) :
-    UseCase<Int, Result<EventDetails>>() {
-    override suspend fun call(params: Int): Result<EventDetails> {
-        return repository.getEventDetails(params)
+    UseCase<GetEventDetailsUseCase.Params, EventDetails>() {
+    override suspend fun call(params: Params): Result<EventDetails> {
+        return repository.getEventDetails(params.id)
     }
+
+    data class Params(
+        val id: Int
+    )
 }

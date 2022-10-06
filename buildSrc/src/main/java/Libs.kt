@@ -29,6 +29,7 @@ fun DependencyHandlerScope.androidx() {
     "implementation"("androidx.core:core-ktx:${Versions.CORE_KTX_VERSION}")
     "implementation"("com.google.android.material:material:${Versions.MATERIAL_DESIGN_VERSION}")
     "implementation"("androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_LAYOUT_VERSION}")
+    "implementation"("androidx.multidex:multidex:${Versions.MULTIDEX_VERSION}")
 }
 
 fun DependencyHandlerScope.retrofit() {

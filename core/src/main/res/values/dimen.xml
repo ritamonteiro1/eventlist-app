@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_x">10dp</dimen>
+    <dimen name="margin_xx">20dp</dimen>
+    <dimen name="margin_xxx">40dp</dimen>
+    <dimen name="margin_xxxx">60dp</dimen>
+    <dimen name="margin_xxxxx">80dp</dimen>
+
+    <dimen name="height_button">48dp</dimen>
+
+</resources>

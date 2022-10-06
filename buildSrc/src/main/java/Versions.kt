@@ -19,4 +19,5 @@ object Versions {
     const val MOCKK_VERSION = "1.12.3"
     const val ESPRESSO_VERSION = "3.4.0"
     const val JUNIT_EXT_VERSION = "1.1.3"
+    const val MULTIDEX_VERSION = "2.0.1"
 }

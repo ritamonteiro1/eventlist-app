@@ -17,3 +17,5 @@ class EmptyEmailException: Exception()
 class InvalidPasswordException: Exception()
 
 class EmptyPasswordException: Exception()
+
+class InvalidNameException: Exception()

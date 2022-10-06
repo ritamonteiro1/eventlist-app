@@ -39,6 +39,9 @@ android {
 dependencies {
     androidx()
     koin()
+    room()
+    retrofit()
+    implementation(Libs.HTTP_INTERCEPTOR)
     implementation(project(path = ":featureauth"))
     implementation(project(path = ":featurehome"))
     implementation(project(path = ":datalocal"))

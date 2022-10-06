@@ -2,6 +2,7 @@ package com.example.eventlist
 
 
 import android.app.Application
+import com.example.di.moduleList
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -13,6 +14,7 @@ class AppApplication : Application() {
         startKoin {
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@AppApplication)
+            modules(moduleList)
         }
     }
 }

@@ -14,6 +14,7 @@ android {
         versionCode = Android.APP_VERSION_CODE
         versionName = Android.APP_VERSION_NAME
         testInstrumentationRunner = Android.TEST_INSTRUMENTATION_RUNNER
+        multiDexEnabled = true
     }
 
     buildTypes {

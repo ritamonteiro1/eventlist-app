@@ -13,6 +13,7 @@ android {
         minSdk = Android.MIN
         targetSdk = Android.TARGET
         testInstrumentationRunner = Android.TEST_INSTRUMENTATION_RUNNER
+        multiDexEnabled = true
     }
 
     buildTypes {

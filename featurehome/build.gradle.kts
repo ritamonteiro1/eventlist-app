@@ -54,4 +54,5 @@ dependencies {
     testImplementation(Libs.MOCKK)
     implementation(Libs.GLIDE)
     implementation(project(path = ":core"))
+    implementation(project(path = ":datalocal"))
 }

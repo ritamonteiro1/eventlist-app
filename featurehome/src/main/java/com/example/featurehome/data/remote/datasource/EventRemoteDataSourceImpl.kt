@@ -2,12 +2,11 @@ package com.example.featurehome.data.remote.datasource
 
 import com.example.core.model.Result
 import com.example.featurehome.data.mapper.toDomain
-import com.example.featurehome.data.mapper.toRemote
+import com.example.featurehome.data.remote.model.UserRequest
 import com.example.featurehome.data.remote.service.EventService
 import com.example.featurehome.data.remote.utils.retrofitWrapper
 import com.example.featurehome.domain.model.Event
 import com.example.featurehome.domain.model.EventDetails
-import com.example.featurehome.domain.model.User
 
 class EventRemoteDataSourceImpl(private val service: EventService) : EventRemoteDataSource {
     override suspend fun getEventList(): Result<List<Event>> {
@@ -24,8 +23,9 @@ class EventRemoteDataSourceImpl(private val service: EventService) : EventRemote
         }
     }
 
-    override suspend fun doCheckIn(user: User): Result<Unit> {
-        return when (val result = retrofitWrapper { service.doCheckIn(user.toRemote()) }) {
+    override suspend fun doCheckIn(eventId: Int): Result<Unit> {
+        return when (val result =
+            retrofitWrapper { service.doCheckIn(UserRequest("", "", eventId)) }) {
             is Result.Error -> result
             is Result.Success -> Result.Success(Unit)
         }

@@ -3,7 +3,7 @@ package com.example.featurehome.domain.repository
 import com.example.core.model.Result
 import com.example.featurehome.domain.model.Event
 import com.example.featurehome.domain.model.EventDetails
-import com.example.featurehome.domain.model.User
+import com.example.featurehome.domain.model.EventUser
 
 interface EventRepository {
     suspend fun getEventList(
@@ -14,6 +14,6 @@ interface EventRepository {
     ): Result<EventDetails>
 
     suspend fun doCheckIn(
-        user: User,
+        eventId: Int,
     ): Result<Unit>
 }

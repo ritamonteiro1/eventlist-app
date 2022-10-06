@@ -39,6 +39,4 @@ android {
 dependencies {
     room()
     implementation(project(path = ":core"))
-    implementation(project(path = ":featureauth"))
-    implementation(project(path = ":featurehome"))
 }

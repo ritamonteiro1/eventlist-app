@@ -9,3 +9,11 @@ class NetworkErrorException : Exception()
 class NullResponseException : Exception()
 
 class CacheResponseException : Exception()
+
+class InvalidEmailException: Exception()
+
+class EmptyEmailException: Exception()
+
+class InvalidPasswordException: Exception()
+
+class EmptyPasswordException: Exception()

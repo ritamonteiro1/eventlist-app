@@ -2,6 +2,7 @@ plugins {
     id(BuildPlugins.ANDROID_LIBRARY)
     id(BuildPlugins.KOTLIN_ANDROID)
     id(BuildPlugins.KOTLIN_PARCELIZE)
+    id(BuildPlugins.NAV_SAFE_ARGS)
 }
 
 android {
@@ -51,6 +52,6 @@ dependencies {
     androidTestImplementation(Libs.ESPRESSO)
     testImplementation(Libs.JUNIT4)
     testImplementation(Libs.MOCKK)
+    implementation(Libs.GLIDE)
     implementation(project(path = ":core"))
-    implementation(project(path = ":navigation"))
 }

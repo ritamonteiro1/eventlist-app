@@ -5,6 +5,7 @@ object BuildPlugins {
     const val KOTLIN_ANDROID = "kotlin-android"
     const val KOTLIN_PARCELIZE = "kotlin-parcelize"
     const val ANDROID_LIBRARY = "com.android.library"
+    const val NAV_SAFE_ARGS = "androidx.navigation.safeargs"
 }
 
 object AppConfig {
@@ -14,7 +15,7 @@ object AppConfig {
 
 object Android {
     const val MIN = 19
-    const val COMPILE = 32
+    const val COMPILE = 33
     const val TARGET = COMPILE
     const val JVM_TARGET = "1.8"
     const val APP_VERSION_CODE = 1

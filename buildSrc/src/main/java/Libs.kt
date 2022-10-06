@@ -21,7 +21,7 @@ object Libs {
     const val HTTP_INTERCEPTOR =
         "com.squareup.okhttp3:logging-interceptor:${Versions.HTTP_INTERCEPTOR_VERSION}"
     const val GLIDE =
-        "om.github.bumptech.glide:glide:${Versions.GLIDE_VERSION}"
+        "com.github.bumptech.glide:glide:${Versions.GLIDE_VERSION}"
 }
 
 fun DependencyHandlerScope.androidx() {

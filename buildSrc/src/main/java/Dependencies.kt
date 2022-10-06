@@ -15,7 +15,7 @@ object AppConfig {
 
 object Android {
     const val MIN = 19
-    const val COMPILE = 33
+    const val COMPILE = 32
     const val TARGET = COMPILE
     const val JVM_TARGET = "1.8"
     const val APP_VERSION_CODE = 1

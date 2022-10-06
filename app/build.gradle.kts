@@ -41,6 +41,7 @@ dependencies {
     androidx()
     koin()
     implementation(project(path = ":di"))
+    implementation(project(path = ":core"))
     implementation(project(path = ":featureauth"))
     implementation(project(path = ":featurehome"))
 }

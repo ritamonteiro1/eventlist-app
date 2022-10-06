@@ -46,4 +46,5 @@ dependencies {
     implementation(project(path = ":featurehome"))
     implementation(project(path = ":datalocal"))
     implementation(project(path = ":core"))
+    implementation(project(path = ":navigation"))
 }

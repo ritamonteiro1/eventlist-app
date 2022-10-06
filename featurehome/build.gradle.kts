@@ -56,4 +56,5 @@ dependencies {
     implementation(Libs.GLIDE)
     implementation(project(path = ":core"))
     implementation(project(path = ":datalocal"))
+    implementation(project(path = ":navigation"))
 }

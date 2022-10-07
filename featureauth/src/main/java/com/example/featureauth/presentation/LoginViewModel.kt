@@ -78,9 +78,9 @@ class LoginViewModel(
                 delay(AUTH_DURATION)
                 _isAuthLogin.postValue(true)
             } else {
-                _isLoading.postValue(false)
                 _isAuthLogin.postValue(false)
             }
+            _isLoading.postValue(false)
         }
     }
 

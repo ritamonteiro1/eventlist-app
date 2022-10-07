@@ -54,4 +54,5 @@ dependencies {
     testImplementation(Libs.MOCKK)
     implementation(project(path = ":core"))
     implementation(project(path = ":datalocal"))
+    implementation(project(path = ":navigation"))
 }

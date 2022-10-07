@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.model.EmptyEmailException
+import com.example.core.model.EmptyNameException
+import com.example.core.model.EmptyPasswordException
 import com.example.core.model.Result
 import com.example.featureauth.domain.model.EmailStatus
 import com.example.featureauth.domain.model.NameStatus
@@ -44,16 +46,15 @@ class LoginViewModel(
             when (val isValidEmail =
                 validateUserEmailUseCase.call(email)) {
                 is Result.Error -> {
-                    val result = isValidEmail.exception
-                    treatUserEmailResultsError(result)
+                    treatUserEmailResultsError(isValidEmail.exception)
                 }
                 is Result.Success -> {
                     _isValidUserEmail.postValue(EmailStatus.VALID)
                 }
             }
-            when (validateUserNameUseCase.call(name)) {
+            when (val isValidName = validateUserNameUseCase.call(name)) {
                 is Result.Error -> {
-                    _isValidUserName.postValue(NameStatus.INVALID)
+                    treatUserNameResultsError(isValidName.exception)
                 }
                 is Result.Success -> {
                     _isValidUserName.postValue(NameStatus.VALID)
@@ -63,7 +64,7 @@ class LoginViewModel(
             when (val isValidPassword =
                 validateUserPasswordUseCase.call(password)) {
                 is Result.Error -> {
-                    treatUserPasswordResultsError(isValidPassword)
+                    treatUserPasswordResultsError(isValidPassword.exception)
                 }
                 is Result.Success -> {
                     _isValidUserPassword.postValue(PasswordStatus.VALID)
@@ -83,26 +84,33 @@ class LoginViewModel(
         }
     }
 
-    private fun treatUserPasswordResultsError(isValidPassword: Result.Error) {
-        val result = isValidPassword.exception
-        if (result is EmptyEmailException) {
+    private fun treatUserNameResultsError(error: Exception) {
+        if (error is EmptyNameException) {
+            _isValidUserName.postValue(NameStatus.EMPTY)
+        } else {
+            _isValidUserName.postValue(NameStatus.INVALID)
+        }
+    }
+
+    private fun treatUserPasswordResultsError(error: Exception) {
+        if (error is EmptyPasswordException) {
             _isValidUserPassword.postValue(PasswordStatus.EMPTY)
         } else {
             _isValidUserPassword.postValue(PasswordStatus.INVALID)
         }
     }
 
-    private fun verifyIfLoginIsAuth() = _isValidUserEmail.value == EmailStatus.VALID &&
-            _isValidUserName.value == NameStatus.VALID &&
-            _isValidUserPassword.value == PasswordStatus.VALID
-
-    private fun treatUserEmailResultsError(result: Exception) {
-        if (result is EmptyEmailException) {
+    private fun treatUserEmailResultsError(error: Exception) {
+        if (error is EmptyEmailException) {
             _isValidUserEmail.postValue(EmailStatus.EMPTY)
         } else {
             _isValidUserEmail.postValue(EmailStatus.INVALID)
         }
     }
+
+    private fun verifyIfLoginIsAuth() = _isValidUserEmail.value == EmailStatus.VALID &&
+            _isValidUserName.value == NameStatus.VALID &&
+            _isValidUserPassword.value == PasswordStatus.VALID
 
     private companion object {
         const val AUTH_DURATION = 2500L

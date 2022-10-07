@@ -93,6 +93,9 @@ class LoginFragment : Fragment() {
             NameStatus.INVALID -> {
                 binding.loginNameTextInputLayout.error = getString(R.string.invalid_name)
             }
+            NameStatus.EMPTY -> {
+                binding.loginNameTextInputLayout.error = getString(R.string.fill_the_field)
+            }
         }
     }
 

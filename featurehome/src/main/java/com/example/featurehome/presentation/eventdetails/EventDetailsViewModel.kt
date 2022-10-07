@@ -26,7 +26,7 @@ class EventDetailsViewModel(
     fun getEventDetails(id: Int) {
         _stateEventDetails.value = LoadingEventDetails
         viewModelScope.launch(dispatcher) {
-            when (val result = getEventDetailsUseCase.call(GetEventDetailsUseCase.Params(id))) {
+            when (val result = getEventDetailsUseCase.call(id)) {
                 is Result.Error -> {
                     _stateEventDetails.value = ErrorEventDetails(result.exception)
                 }
@@ -40,7 +40,7 @@ class EventDetailsViewModel(
     fun doCheckIn(eventId: Int) {
         _stateDoCheckIn.value = LoadingDoCheckIn
         viewModelScope.launch(dispatcher) {
-            when (val result = doCheckInUseCase.call(DoCheckInUseCase.Params(eventId))) {
+            when (val result = doCheckInUseCase.call(eventId)) {
                 is Result.Error -> {
                     _stateDoCheckIn.value = ErrorDoCheckIn(result.exception)
                 }

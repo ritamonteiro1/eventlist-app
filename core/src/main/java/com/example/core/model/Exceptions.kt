@@ -1,6 +1,6 @@
 package com.example.core.model
 
-class GenericErrorException : Exception()
+class GenericErrorException() : Exception()
 
 class ServerErrorException : Exception()
 

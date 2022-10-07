@@ -2,12 +2,15 @@ package com.example.featureauth.domain.usecase
 
 import com.example.core.model.InvalidEmailException
 import com.example.core.model.Result
-import com.example.core.utils.UseCase
 
-class ValidateUserNameUseCase : UseCase<ValidateUserNameUseCase.Params, Unit>() {
-    override suspend fun call(params: Params): Result<Unit> {
+interface ValidateUserNameUseCase {
+    fun call(name: String?): Result<Unit>
+}
+
+class ValidateUserNameUseCaseImpl : ValidateUserNameUseCase {
+    override fun call(name: String?): Result<Unit> {
         return when {
-            params.name?.replace("\\s".toRegex(), "")?.isEmpty() == true -> {
+            name?.replace("\\s".toRegex(), "")?.isEmpty() == true -> {
                 Result.Error(InvalidEmailException())
             }
             else -> {
@@ -16,8 +19,4 @@ class ValidateUserNameUseCase : UseCase<ValidateUserNameUseCase.Params, Unit>() 
             }
         }
     }
-
-    data class Params(
-        val name: String?,
-    )
 }

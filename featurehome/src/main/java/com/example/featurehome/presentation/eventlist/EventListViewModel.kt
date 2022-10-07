@@ -21,7 +21,7 @@ class EventListViewModel(
     fun getEventList() {
         _stateEventList.value = Loading
         viewModelScope.launch(dispatcher) {
-            when (val result = getEventListUseCase.call(GetEventListUseCase.Params)) {
+            when (val result = getEventListUseCase.call()) {
                 is Result.Error -> {
                     _stateEventList.value = Error(result.exception)
                 }

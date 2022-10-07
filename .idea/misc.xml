@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="core/src/main/res/layout/progress_dialog.xml" value="0.37604166666666666" />
         <entry key="featureauth/src/main/res/drawable/ic_email.xml" value="0.1" />
         <entry key="featureauth/src/main/res/drawable/ic_lock.xml" value="0.1" />
         <entry key="featureauth/src/main/res/drawable/ic_person.xml" value="0.1" />

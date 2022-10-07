@@ -1,0 +1,7 @@
+<resources>
+    <string name="generic_error_exception">Ocorreu um erro.</string>
+    <string name="network_error_exception">Falha na conexão. Tente novamente.</string>
+    <string name="server_error_exception">Falha na conexão. Tente novamente.</string>
+    <string name="login_password_hint_text_input">Senha</string>
+    <string name="login_button_text">Entrar</string>
+</resources>

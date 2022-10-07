@@ -7,7 +7,7 @@ object Versions {
     const val NAVIGATION_VERSION = "2.5.2"
     const val NAV_SAFE_ARGS_VERSION = "2.5.2"
     const val CORE_KTX_VERSION = "1.8.0"
-    const val KOIN_VERSION = "3.2.2"
+    const val KOIN_VERSION = "3.1.4"
     const val ROOM_VERSION = "2.4.3"
     const val GLIDE_VERSION = "4.12.0"
     const val RETROFIT_VERSION = "2.9.0"

@@ -16,22 +16,20 @@ class EventRepositoryImpl(
 ) : EventRepository {
     override suspend fun getEventList(): Result<List<Event>> {
         val result = remoteDataSource.getEventList()
-        if (result is Result.Success) {
+        return if (result is Result.Success) {
             val eventList = result.data
             eventCacheDataSource.saveEventList(eventList.toCache())
-            return getEventListFromCache()
-        }
-        return getEventListFromCache()
+            getEventListFromCache()
+        } else getEventListFromCache()
     }
 
     override suspend fun getEventDetails(id: Int): Result<EventDetails> {
         val result = remoteDataSource.getEventDetails(id)
-        if (result is Result.Success) {
+        return if (result is Result.Success) {
             val eventDetails = result.data
             eventCacheDataSource.saveEventDetails(eventDetails.toCache())
-            return getEventDetailsFromCache(id)
-        }
-        return getEventDetailsFromCache(id)
+            getEventDetailsFromCache(id)
+        } else getEventDetailsFromCache(id)
     }
 
     override suspend fun doCheckIn(eventId: Int): Result<Unit> {
@@ -40,9 +38,6 @@ class EventRepositoryImpl(
 
     private suspend fun getEventListFromCache(): Result<List<Event>> {
         val eventList = eventCacheDataSource.getEventList()
-        if (eventList?.isEmpty() == true) {
-            return Result.Error(GenericErrorException())
-        }
         return Result.Success(eventList.toDomain())
     }
 

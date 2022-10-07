@@ -1,5 +1,6 @@
 package com.example.featurehome.domain.usecase
 
+import com.example.core.model.EmptyListCacheException
 import com.example.core.model.Result
 import com.example.featurehome.domain.model.Event
 import com.example.featurehome.domain.repository.EventRepository
@@ -13,7 +14,10 @@ class GetEventListUseCaseImpl(private val repository: EventRepository) :
     GetEventListUseCase {
 
     override suspend fun call(): Result<List<Event>> {
-        return repository.getEventList()
+        val result = repository.getEventList()
+        if (result is Result.Success && result.data.isNotEmpty()) {
+            return Result.Success(result.data)
+        }
+        return Result.Error(EmptyListCacheException())
     }
-
 }

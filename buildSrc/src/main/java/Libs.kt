@@ -22,6 +22,8 @@ object Libs {
         "com.squareup.okhttp3:logging-interceptor:${Versions.HTTP_INTERCEPTOR_VERSION}"
     const val GLIDE =
         "com.github.bumptech.glide:glide:${Versions.GLIDE_VERSION}"
+    const val PLAY_SERVICES =
+        "com.google.android.gms:play-services-auth:${Versions.PLAY_SERVICES_VERSION}"
 }
 
 fun DependencyHandlerScope.androidx() {
@@ -30,6 +32,7 @@ fun DependencyHandlerScope.androidx() {
     "implementation"("com.google.android.material:material:${Versions.MATERIAL_DESIGN_VERSION}")
     "implementation"("androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_LAYOUT_VERSION}")
     "implementation"("androidx.multidex:multidex:${Versions.MULTIDEX_VERSION}")
+    "implementation"("androidx.startup:startup-runtime:${Versions.STARTUP_VERSION}")
 }
 
 fun DependencyHandlerScope.retrofit() {

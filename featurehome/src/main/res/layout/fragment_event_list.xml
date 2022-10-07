@@ -2,36 +2,45 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".presentation.HomeActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/eventListToolBar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:theme="@style/ToolBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.appcompat.widget.Toolbar>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?android:actionBarSize"
+            app:title="@string/fragment_event_list_app_bar_title"
+            app:titleTextColor="@android:color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eventListRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin_recycler_view_list_event"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_recycler_view_list_event"
+        android:layout_marginTop="@dimen/margin_recycler_view_list_event"
+        android:layout_marginEnd="@dimen/margin_recycler_view_list_event"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBar"
         tools:itemCount="5"
         tools:listitem="@layout/item_event"
-        tools:visibility="gone" />
+        tools:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -43,7 +52,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/appBar"
+        tools:visibility="gone" />
 
     <TextView
         android:id="@+id/errorText"
@@ -56,9 +66,9 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventListToolBar"
+        app:layout_constraintTop_toBottomOf="@+id/appBar"
         tools:text="Tente novamente"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <Button
         android:id="@+id/errorButton"
@@ -68,12 +78,12 @@
         android:layout_marginStart="@dimen/margin_xxx"
         android:layout_marginTop="@dimen/margin_xx"
         android:layout_marginEnd="@dimen/margin_xxx"
+        android:layout_marginBottom="@dimen/margin_xxx"
         android:background="@color/red"
         android:text="@string/fragment_event_list_button_text"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/errorText"
-        tools:visibility="visible" />
-
+        tools:visibility="gone" />
 </androidx.constraintlayout.widget.ConstraintLayout>

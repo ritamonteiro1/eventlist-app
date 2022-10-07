@@ -74,16 +74,25 @@ class LoginViewModel(
                 }
             }
 
-            if (isValidEmail is Result.Success && isValidName is Result.Success && isValidPassword is Result.Success) {
+            val isAuthLogin = verifyIsAuthLogin(isValidEmail, isValidName, isValidPassword)
+
+            if (isAuthLogin) {
                 _isLoading.postValue(true)
                 delay(AUTH_DURATION)
                 _isAuthLogin.postValue(true)
             } else {
                 _isAuthLogin.postValue(false)
-                _isLoading.postValue(false)
             }
+            _isLoading.postValue(false)
         }
     }
+
+    private fun verifyIsAuthLogin(
+        isValidEmail: Result<Unit>,
+        isValidName: Result<Unit>,
+        isValidPassword: Result<Unit>
+    ) = isValidEmail is Result.Success && isValidName is Result.Success &&
+            isValidPassword is Result.Success
 
     private fun treatUserNameResultsError(error: Exception) {
         if (error is EmptyNameException) {

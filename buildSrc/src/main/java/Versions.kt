@@ -1,6 +1,6 @@
 object Versions {
     const val ANDROID_GRADLE_PLUGIN_VERSION = "7.2.2"
-    const val KOTLIN_VERSION = "1.7.20"
+    const val KOTLIN_VERSION = "1.6.10"
     const val APP_COMPAT_VERSION = "1.5.0"
     const val MATERIAL_DESIGN_VERSION = "1.6.1"
     const val CONSTRAINT_LAYOUT_VERSION = "2.1.4"
@@ -11,7 +11,7 @@ object Versions {
     const val ROOM_VERSION = "2.4.3"
     const val GLIDE_VERSION = "4.12.0"
     const val RETROFIT_VERSION = "2.9.0"
-    const val HTTP_INTERCEPTOR_VERSION = "4.9.1"
+    const val HTTP_INTERCEPTOR_VERSION = "3.11.0"
     const val GSON_VERSION = "2.9.0"
     const val COROUTINES_VERSION = "1.4.1"
     const val LIFECYCLE_VERSION = "2.4.0"
@@ -20,4 +20,6 @@ object Versions {
     const val ESPRESSO_VERSION = "3.4.0"
     const val JUNIT_EXT_VERSION = "1.1.3"
     const val MULTIDEX_VERSION = "2.0.1"
+    const val STARTUP_VERSION = "1.1.1"
+    const val PLAY_SERVICES_VERSION = "20.3.0"
 }

@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
         <entry key="core/src/main/res/drawable/ic_image_error.xml" value="0.1785" />
+        <entry key="core/src/main/res/drawable/ic_img_error.xml" value="0.2535" />
         <entry key="core/src/main/res/layout/progress_dialog.xml" value="0.37604166666666666" />
         <entry key="featureauth/src/main/res/drawable/ic_email.xml" value="0.1" />
         <entry key="featureauth/src/main/res/drawable/ic_lock.xml" value="0.1" />
@@ -14,7 +15,7 @@
         <entry key="featureauth/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="featurehome/src/main/res/layout/activity_home.xml" value="0.1828774062816616" />
         <entry key="featurehome/src/main/res/layout/fragment_event_details.xml" value="0.1828774062816616" />
-        <entry key="featurehome/src/main/res/layout/fragment_event_list.xml" value="0.22" />
+        <entry key="featurehome/src/main/res/layout/fragment_event_list.xml" value="0.1" />
         <entry key="featurehome/src/main/res/layout/item_event.xml" value="0.28217821782178215" />
       </map>
     </option>

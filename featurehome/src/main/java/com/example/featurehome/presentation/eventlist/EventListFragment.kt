@@ -2,15 +2,15 @@ package com.example.featurehome.presentation.eventlist
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.core.R
+import com.example.core.model.NetworkErrorException
+import com.example.core.model.ServerErrorException
 import com.example.core.utils.createLoadingDialog
-import com.example.featurehome.R
 import com.example.featurehome.databinding.FragmentEventListBinding
 import com.example.featurehome.domain.model.Event
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -39,7 +39,12 @@ class EventListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getEventList()
         setupObservers()
-        setupToolBar()
+    }
+
+    private fun setOnClickButton() {
+        binding.errorButton.setOnClickListener {
+            viewModel.getEventList()
+        }
     }
 
     private fun setupObservers() {
@@ -51,11 +56,13 @@ class EventListFragment : Fragment() {
     private fun handleState(state: EventListState) {
         when (state) {
             is Error -> {
+                val message = getErrorMessage(state.error)
                 loadingDialog?.dismiss()
                 binding.eventListRecyclerView.visibility = View.GONE
-                binding.errorText.text = "tente novamente"
                 binding.errorText.visibility = View.VISIBLE
                 binding.errorButton.visibility = View.VISIBLE
+                binding.errorText.text = message
+                setOnClickButton()
             }
             is Loading -> {
                 loadingDialog?.show()
@@ -74,14 +81,9 @@ class EventListFragment : Fragment() {
         }
     }
 
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            activity?.finish()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
+    private fun getErrorMessage(error: Throwable) =
+        if (error is NetworkErrorException || error is ServerErrorException)
+            getString(R.string.network_error_exception) else getString(R.string.generic_error_exception)
 
     private fun setupEventListAdapter(eventList: List<Event>): EventListAdapter {
         return EventListAdapter(eventList) { event ->
@@ -97,13 +99,5 @@ class EventListFragment : Fragment() {
             activity, LinearLayoutManager.VERTICAL, false
         )
         binding.eventListRecyclerView.layoutManager = layoutManager
-    }
-
-    private fun setupToolBar() {
-        (requireActivity() as? AppCompatActivity)?.apply {
-            setSupportActionBar(binding.eventListToolBar)
-            actionBar?.setDisplayShowTitleEnabled(true)
-            actionBar?.title = getString(R.string.fragment_event_list_toolbar_text)
-        }
     }
 }

@@ -43,8 +43,12 @@ class LoginViewModel(
     fun doLogin(email: String, password: String, name: String) {
         viewModelScope.launch(dispatcher) {
 
-            when (val isValidEmail =
-                validateUserEmailUseCase.call(email)) {
+            val isValidEmail = validateUserEmailUseCase.call(email)
+            val isValidName = validateUserNameUseCase.call(name)
+            val isValidPassword =
+                validateUserPasswordUseCase.call(password)
+
+            when (isValidEmail) {
                 is Result.Error -> {
                     treatUserEmailResultsError(isValidEmail.exception)
                 }
@@ -52,7 +56,7 @@ class LoginViewModel(
                     _isValidUserEmail.postValue(EmailStatus.VALID)
                 }
             }
-            when (val isValidName = validateUserNameUseCase.call(name)) {
+            when (isValidName) {
                 is Result.Error -> {
                     treatUserNameResultsError(isValidName.exception)
                 }
@@ -61,8 +65,7 @@ class LoginViewModel(
                 }
             }
 
-            when (val isValidPassword =
-                validateUserPasswordUseCase.call(password)) {
+            when (isValidPassword) {
                 is Result.Error -> {
                     treatUserPasswordResultsError(isValidPassword.exception)
                 }
@@ -71,16 +74,14 @@ class LoginViewModel(
                 }
             }
 
-            val isAuthLogin = verifyIfLoginIsAuth()
-
-            if (isAuthLogin) {
+            if (isValidEmail is Result.Success && isValidName is Result.Success && isValidPassword is Result.Success) {
                 _isLoading.postValue(true)
                 delay(AUTH_DURATION)
                 _isAuthLogin.postValue(true)
             } else {
                 _isAuthLogin.postValue(false)
+                _isLoading.postValue(false)
             }
-            _isLoading.postValue(false)
         }
     }
 
@@ -107,10 +108,6 @@ class LoginViewModel(
             _isValidUserEmail.postValue(EmailStatus.INVALID)
         }
     }
-
-    private fun verifyIfLoginIsAuth() = _isValidUserEmail.value == EmailStatus.VALID &&
-            _isValidUserName.value == NameStatus.VALID &&
-            _isValidUserPassword.value == PasswordStatus.VALID
 
     private companion object {
         const val AUTH_DURATION = 2500L

@@ -60,4 +60,5 @@ fun DependencyHandlerScope.navigation() {
 fun DependencyHandlerScope.room() {
     "implementation"("androidx.room:room-runtime:${Versions.ROOM_VERSION}")
     "implementation"("androidx.room:room-ktx:${Versions.ROOM_VERSION}")
+    "kapt"("androidx.room:room-compiler:${Versions.ROOM_VERSION}")
 }

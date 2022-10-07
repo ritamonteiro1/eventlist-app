@@ -107,7 +107,7 @@ class LoginFragment : Fragment() {
             PasswordStatus.EMPTY -> {
                 binding.loginPasswordTextInputLayout.error = getString(R.string.fill_the_field)
             }
-            else -> {
+            PasswordStatus.INVALID -> {
                 binding.loginPasswordTextInputLayout.error = getString(R.string.invalid_password)
             }
         }
@@ -122,7 +122,7 @@ class LoginFragment : Fragment() {
                 binding.loginEmailTextInputLayout.error =
                     getString(R.string.fill_the_field)
             }
-            else -> {
+            EmailStatus.INVALID -> {
                 binding.loginEmailTextInputLayout.error =
                     getString(R.string.invalid_email)
             }

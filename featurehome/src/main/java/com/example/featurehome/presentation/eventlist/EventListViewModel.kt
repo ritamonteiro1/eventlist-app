@@ -19,14 +19,14 @@ class EventListViewModel(
     val stateEventList: LiveData<EventListState> = _stateEventList
 
     fun getEventList() {
-        _stateEventList.value = Loading
+        _stateEventList.postValue(Loading)
         viewModelScope.launch(dispatcher) {
             when (val result = getEventListUseCase.call()) {
                 is Result.Error -> {
-                    _stateEventList.value = Error(result.exception)
+                    _stateEventList.postValue(Error(result.exception))
                 }
                 is Result.Success -> {
-                    _stateEventList.value = Success(result.data)
+                    _stateEventList.postValue(Success(result.data))
                 }
             }
         }

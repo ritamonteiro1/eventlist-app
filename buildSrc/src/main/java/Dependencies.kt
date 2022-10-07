@@ -6,6 +6,7 @@ object BuildPlugins {
     const val KOTLIN_PARCELIZE = "kotlin-parcelize"
     const val ANDROID_LIBRARY = "com.android.library"
     const val NAV_SAFE_ARGS = "androidx.navigation.safeargs"
+    const val KOTLIN_KAPT = "kotlin-kapt"
 }
 
 object AppConfig {

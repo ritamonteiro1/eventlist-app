@@ -78,7 +78,7 @@
         android:layout_marginEnd="@dimen/margin_xxx"
         android:layout_marginBottom="@dimen/margin_xxx"
         android:background="@color/red"
-        android:text="@string/fragment_event_list_button_text"
+        android:text="@string/try_again_button_text"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

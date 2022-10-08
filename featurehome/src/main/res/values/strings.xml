@@ -2,7 +2,6 @@
     <!-- item_event.xml -->
     <string name="item_event_content_description_image">Imagem do evento</string>
     <!-- fragment_event_list.xml -->
-    <string name="fragment_event_list_button_text">Tentar novamente</string>
     <string name="fragment_event_list_app_bar_title">Eventos</string>
     <!-- EventListFragment -->
     <string name="fragment_event_list_toolbar_text">Eventos</string>

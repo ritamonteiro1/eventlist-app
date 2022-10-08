@@ -3,4 +3,5 @@
     <string name="network_error_exception">Falha na conexão</string>
     <string name="login_password_hint_text_input">Senha</string>
     <string name="login_button_text">Entrar</string>
+    <string name="try_again_button_text">Tentar novamente</string>
 </resources>

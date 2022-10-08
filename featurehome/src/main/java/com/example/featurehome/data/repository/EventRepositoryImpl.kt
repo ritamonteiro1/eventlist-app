@@ -1,6 +1,6 @@
 package com.example.featurehome.data.repository
 
-import com.example.core.model.GenericErrorException
+import com.example.core.model.NullCacheException
 import com.example.core.model.Result
 import com.example.datalocal.datasource.EventCacheDataSource
 import com.example.featurehome.data.mapper.toCache
@@ -17,8 +17,8 @@ class EventRepositoryImpl(
     override suspend fun getEventList(): Result<List<Event>> {
         val result = remoteDataSource.getEventList()
         return if (result is Result.Success) {
-            val eventList = result.data
-            eventCacheDataSource.saveEventList(eventList.toCache())
+            val eventListResponse = result.data
+            eventCacheDataSource.saveEventList(eventListResponse.toCache())
             getEventListFromCache()
         } else getEventListFromCache()
     }
@@ -26,8 +26,8 @@ class EventRepositoryImpl(
     override suspend fun getEventDetails(id: Int): Result<EventDetails> {
         val result = remoteDataSource.getEventDetails(id)
         return if (result is Result.Success) {
-            val eventDetails = result.data
-            eventCacheDataSource.saveEventDetails(eventDetails.toCache())
+            val eventDetailsResponse = result.data
+            eventCacheDataSource.saveEventDetails(eventDetailsResponse.toCache())
             getEventDetailsFromCache(id)
         } else getEventDetailsFromCache(id)
     }
@@ -42,8 +42,8 @@ class EventRepositoryImpl(
     }
 
     private suspend fun getEventDetailsFromCache(id: Int): Result<EventDetails> {
-        val eventDetails = eventCacheDataSource.getEventDetails(id)
-            ?: return Result.Error(GenericErrorException())
-        return Result.Success(eventDetails.toDomain())
+        val eventDetailsCache = eventCacheDataSource.getEventDetails(id)
+        return if (eventDetailsCache == null) Result.Error(NullCacheException())
+        else Result.Success(eventDetailsCache.toDomain())
     }
 }

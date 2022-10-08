@@ -5,4 +5,6 @@
     <string name="fragment_event_list_app_bar_title">Eventos</string>
     <!-- EventListFragment -->
     <string name="fragment_event_list_toolbar_text">Eventos</string>
+    <!-- fragment_event_details.xml -->
+    <string name="do_checkin_button_text">Realizar CheckIn</string>
 </resources>

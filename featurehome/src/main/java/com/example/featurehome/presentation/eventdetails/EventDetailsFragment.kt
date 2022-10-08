@@ -61,6 +61,7 @@ class EventDetailsFragment : Fragment() {
                 binding.priceTextView.visibility = View.GONE
                 binding.errorText.visibility = View.VISIBLE
                 binding.errorButton.visibility = View.VISIBLE
+                binding.doCheckinButton.visibility = View.GONE
                 binding.errorText.text = message
                 setOnClickButton()
             }
@@ -73,6 +74,7 @@ class EventDetailsFragment : Fragment() {
                 binding.descriptionTextView.visibility = View.GONE
                 binding.dateTextView.visibility = View.GONE
                 binding.priceTextView.visibility = View.GONE
+                binding.doCheckinButton.visibility = View.GONE
             }
             is SuccessEventDetails -> {
                 loadingDialog?.dismiss()
@@ -88,6 +90,7 @@ class EventDetailsFragment : Fragment() {
                 binding.descriptionTextView.visibility = View.VISIBLE
                 binding.dateTextView.visibility = View.VISIBLE
                 binding.priceTextView.visibility = View.VISIBLE
+                binding.doCheckinButton.visibility = View.VISIBLE
             }
         }
     }

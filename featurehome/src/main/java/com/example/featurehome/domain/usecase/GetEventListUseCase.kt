@@ -14,10 +14,6 @@ class GetEventListUseCaseImpl(private val repository: EventRepository) :
     GetEventListUseCase {
 
     override suspend fun call(): Result<List<Event>> {
-        val result = repository.getEventList()
-        if (result is Result.Success && result.data.isNotEmpty()) {
-            return Result.Success(result.data)
-        }
-        return Result.Error(NullCacheException())
+        return repository.getEventList()
     }
 }

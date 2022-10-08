@@ -2,7 +2,7 @@ package com.example.featurehome.data.remote.service
 
 import com.example.featurehome.data.remote.model.EventDetailsResponse
 import com.example.featurehome.data.remote.model.EventResponse
-import com.example.featurehome.data.remote.model.UserRequest
+import com.example.featurehome.data.remote.model.EventUserRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -18,5 +18,5 @@ interface EventService {
     ): EventDetailsResponse
 
     @POST("checkin")
-    suspend fun doCheckIn(@Body user: UserRequest)
+    suspend fun doCheckIn(@Body user: EventUserRequest)
 }

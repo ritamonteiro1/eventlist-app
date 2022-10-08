@@ -37,10 +37,10 @@ class EventDetailsViewModel(
         }
     }
 
-    fun doCheckIn(eventId: Int) {
+    fun doCheckIn(eventUser: EventUser) {
         _stateDoCheckIn.postValue(LoadingDoCheckIn)
         viewModelScope.launch(dispatcher) {
-            when (val result = doCheckInUseCase.call(eventId)) {
+            when (val result = doCheckInUseCase.call(eventUser)) {
                 is Result.Error -> {
                     _stateDoCheckIn.postValue(ErrorDoCheckIn(result.exception))
                 }

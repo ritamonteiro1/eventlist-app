@@ -20,6 +20,7 @@
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:title="@string/fragment_event_details_app_bar_title"
             android:minHeight="?android:actionBarSize"
             app:titleTextColor="@android:color/white" />
     </com.google.android.material.appbar.AppBarLayout>

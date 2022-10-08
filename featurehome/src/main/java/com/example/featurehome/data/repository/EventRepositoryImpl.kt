@@ -8,6 +8,7 @@ import com.example.featurehome.data.mapper.toDomain
 import com.example.featurehome.data.remote.datasource.EventRemoteDataSource
 import com.example.featurehome.domain.model.Event
 import com.example.featurehome.domain.model.EventDetails
+import com.example.featurehome.domain.model.EventUser
 import com.example.featurehome.domain.repository.EventRepository
 
 class EventRepositoryImpl(
@@ -34,8 +35,8 @@ class EventRepositoryImpl(
         } else getEventDetailsFromCache(id, result)
     }
 
-    override suspend fun doCheckIn(eventId: Int): Result<Unit> {
-        return remoteDataSource.doCheckIn(eventId)
+    override suspend fun doCheckIn(eventUser: EventUser): Result<Unit> {
+        return remoteDataSource.doCheckIn(eventUser)
     }
 
     private suspend fun getEventListFromCache(result: Result<List<Event>>): Result<List<Event>> {

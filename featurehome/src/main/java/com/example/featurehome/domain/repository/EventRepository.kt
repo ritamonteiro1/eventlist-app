@@ -14,6 +14,6 @@ interface EventRepository {
     ): Result<EventDetails>
 
     suspend fun doCheckIn(
-        eventId: Int,
+        eventUser: EventUser
     ): Result<Unit>
 }

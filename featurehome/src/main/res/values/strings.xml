@@ -7,4 +7,6 @@
     <string name="fragment_event_list_toolbar_text">Eventos</string>
     <!-- fragment_event_details.xml -->
     <string name="do_checkin_button_text">Realizar CheckIn</string>
+    <string name="image_content_description">Imagem do evento</string>
+    <string name="fragment_event_details_app_bar_title">Detalhes sobre o evento</string>
 </resources>

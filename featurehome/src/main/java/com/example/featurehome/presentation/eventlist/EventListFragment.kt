@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core.utils.createLoadingDialog
+import com.example.core.utils.setupToolbar
 import com.example.featurehome.databinding.FragmentEventListBinding
 import com.example.featurehome.domain.model.Event
 import getErrorMessage
@@ -37,6 +38,7 @@ class EventListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getEventList()
         setupObservers()
+        setupToolbar(binding.toolBar)
     }
 
     private fun setOnClickButton() {
@@ -54,29 +56,41 @@ class EventListFragment : Fragment() {
     private fun handleState(state: EventListState) {
         when (state) {
             is Error -> {
-                val message = getString(state.error.getErrorMessage())
-                loadingDialog?.dismiss()
-                binding.eventListRecyclerView.visibility = View.GONE
-                binding.errorText.visibility = View.VISIBLE
-                binding.errorButton.visibility = View.VISIBLE
-                binding.errorText.text = message
-                setOnClickButton()
+                handleErrorStateEventList(state)
             }
             is Loading -> {
-                loadingDialog?.show()
-                binding.eventListRecyclerView.visibility = View.GONE
-                binding.errorText.visibility = View.GONE
-                binding.errorButton.visibility = View.GONE
+                handleLoadingStateEventList()
             }
             is Success -> {
-                loadingDialog?.dismiss()
-                val eventListAdapter = setupEventListAdapter(state.eventList)
-                setupRecyclerView(eventListAdapter)
-                binding.eventListRecyclerView.visibility = View.VISIBLE
-                binding.errorText.visibility = View.GONE
-                binding.errorButton.visibility = View.GONE
+                handleSuccessStateEventList(state)
             }
         }
+    }
+
+    private fun handleSuccessStateEventList(state: Success) {
+        loadingDialog?.dismiss()
+        val eventListAdapter = setupEventListAdapter(state.eventList)
+        setupRecyclerView(eventListAdapter)
+        binding.eventListRecyclerView.visibility = View.VISIBLE
+        binding.errorText.visibility = View.GONE
+        binding.errorButton.visibility = View.GONE
+    }
+
+    private fun handleLoadingStateEventList() {
+        loadingDialog?.show()
+        binding.eventListRecyclerView.visibility = View.GONE
+        binding.errorText.visibility = View.GONE
+        binding.errorButton.visibility = View.GONE
+    }
+
+    private fun handleErrorStateEventList(state: Error) {
+        val message = getString(state.error.getErrorMessage())
+        loadingDialog?.dismiss()
+        binding.eventListRecyclerView.visibility = View.GONE
+        binding.errorText.visibility = View.VISIBLE
+        binding.errorButton.visibility = View.VISIBLE
+        binding.errorText.text = message
+        setOnClickButton()
     }
 
     private fun setupEventListAdapter(eventList: List<Event>): EventListAdapter {

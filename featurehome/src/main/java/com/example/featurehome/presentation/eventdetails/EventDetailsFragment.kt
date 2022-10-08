@@ -13,6 +13,7 @@ import com.example.core.utils.createLoadingDialog
 import com.example.core.utils.downloadImage
 import com.example.core.utils.toStringDate
 import com.example.featurehome.databinding.FragmentEventDetailsBinding
+import getErrorMessage
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EventDetailsFragment : Fragment() {
@@ -51,7 +52,7 @@ class EventDetailsFragment : Fragment() {
     private fun handleState(state: EventDetailsState) {
         when (state) {
             is ErrorEventDetails -> {
-                val message = getErrorMessage(state.error)
+                val message = getString(state.error.getErrorMessage())
                 loadingDialog?.dismiss()
                 binding.imageView.visibility = View.GONE
                 binding.titleTextView.visibility = View.GONE
@@ -90,10 +91,6 @@ class EventDetailsFragment : Fragment() {
             }
         }
     }
-
-    private fun getErrorMessage(error: Throwable) =
-        if (error is NetworkErrorException || error is ServerErrorException)
-            getString(R.string.network_error_exception) else getString(R.string.generic_error_exception)
 
     private fun setOnClickButton() {
         binding.errorButton.setOnClickListener {

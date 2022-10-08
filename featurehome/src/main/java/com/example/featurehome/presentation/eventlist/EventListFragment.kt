@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.core.R
-import com.example.core.model.NetworkErrorException
-import com.example.core.model.ServerErrorException
 import com.example.core.utils.createLoadingDialog
 import com.example.featurehome.databinding.FragmentEventListBinding
 import com.example.featurehome.domain.model.Event
+import getErrorMessage
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EventListFragment : Fragment() {
@@ -56,7 +54,7 @@ class EventListFragment : Fragment() {
     private fun handleState(state: EventListState) {
         when (state) {
             is Error -> {
-                val message = getErrorMessage(state.error)
+                val message = getString(state.error.getErrorMessage())
                 loadingDialog?.dismiss()
                 binding.eventListRecyclerView.visibility = View.GONE
                 binding.errorText.visibility = View.VISIBLE
@@ -80,10 +78,6 @@ class EventListFragment : Fragment() {
             }
         }
     }
-
-    private fun getErrorMessage(error: Throwable) =
-        if (error is NetworkErrorException || error is ServerErrorException)
-            getString(R.string.network_error_exception) else getString(R.string.generic_error_exception)
 
     private fun setupEventListAdapter(eventList: List<Event>): EventListAdapter {
         return EventListAdapter(eventList) { event ->

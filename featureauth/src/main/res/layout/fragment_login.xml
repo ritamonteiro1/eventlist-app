@@ -36,6 +36,7 @@
             android:layout_marginTop="@dimen/margin_xxx"
             android:layout_marginEnd="@dimen/margin_xxx"
             android:hint="@string/login_name_hint_text_input"
+            app:boxBackgroundColor="@android:color/transparent"
             app:errorTextColor="@color/red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:maxLines="1"/>
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -57,7 +58,9 @@
             android:layout_marginStart="@dimen/margin_xxx"
             android:layout_marginTop="@dimen/margin_x"
             android:layout_marginEnd="@dimen/margin_xxx"
+
             android:hint="@string/login_email_hint_text_input"
+            app:boxBackgroundColor="@android:color/transparent"
             app:errorTextColor="@color/red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,6 +83,7 @@
             android:layout_marginTop="@dimen/margin_x"
             android:layout_marginEnd="@dimen/margin_xxx"
             android:hint="@string/login_password_hint_text_input"
+            app:boxBackgroundColor="@android:color/transparent"
             app:errorTextColor="@color/red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,6 +103,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/height_button"
             android:layout_marginStart="@dimen/margin_xxx"
+
             android:layout_marginTop="@dimen/margin_xxx"
             android:layout_marginEnd="@dimen/margin_xxx"
             android:layout_marginBottom="@dimen/margin_xx"

@@ -20,8 +20,8 @@
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/fragment_event_details_app_bar_title"
             android:minHeight="?android:actionBarSize"
+            app:title="@string/fragment_event_details_app_bar_title"
             app:titleTextColor="@android:color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -101,7 +101,7 @@
 
             <TextView
                 android:id="@+id/titleTextView"
-                style="@style/TextStyleEventDetails"
+                style="@style/TextStyleTitleEventDetails"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_xx"
@@ -161,9 +161,9 @@
                 style="@style/ButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/height_button"
+                android:layout_marginStart="@dimen/margin_xx"
                 android:layout_marginTop="@dimen/margin_xx"
                 android:layout_marginEnd="@dimen/margin_xx"
-                android:layout_marginStart="@dimen/margin_xx"
                 android:layout_marginBottom="@dimen/margin_xx"
                 android:background="@color/green"
                 android:text="@string/do_checkin_button_text"

@@ -8,6 +8,7 @@
 
     <dimen name="height_button">48dp</dimen>
     <dimen name="margin_card_item_event">2dp</dimen>
+    <dimen name="corner_card_item_event">20dp</dimen>
     <dimen name="margin_recycler_view_list_event">4dp</dimen>
 
 </resources>

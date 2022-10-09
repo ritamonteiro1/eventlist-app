@@ -24,28 +24,28 @@ class EventDetailsViewModel(
     val stateDoCheckIn: LiveData<DoCheckInState> = _stateDoCheckIn
 
     fun getEventDetails(id: Int) {
-        _stateEventDetails.value = LoadingEventDetails
+        _stateEventDetails.postValue(LoadingEventDetails)
         viewModelScope.launch(dispatcher) {
             when (val result = getEventDetailsUseCase.call(id)) {
                 is Result.Error -> {
-                    _stateEventDetails.value = ErrorEventDetails(result.exception)
+                    _stateEventDetails.postValue(ErrorEventDetails(result.exception))
                 }
                 is Result.Success -> {
-                    _stateEventDetails.value = SuccessEventDetails(result.data)
+                    _stateEventDetails.postValue(SuccessEventDetails(result.data))
                 }
             }
         }
     }
 
-    fun doCheckIn(eventId: Int) {
-        _stateDoCheckIn.value = LoadingDoCheckIn
+    fun doCheckIn(eventUser: EventUser) {
+        _stateDoCheckIn.postValue(LoadingDoCheckIn)
         viewModelScope.launch(dispatcher) {
-            when (val result = doCheckInUseCase.call(eventId)) {
+            when (val result = doCheckInUseCase.call(eventUser)) {
                 is Result.Error -> {
-                    _stateDoCheckIn.value = ErrorDoCheckIn(result.exception)
+                    _stateDoCheckIn.postValue(ErrorDoCheckIn(result.exception))
                 }
                 is Result.Success -> {
-                    _stateDoCheckIn.value = SuccessDoCheckIn
+                    _stateDoCheckIn.postValue(SuccessDoCheckIn)
                 }
             }
         }

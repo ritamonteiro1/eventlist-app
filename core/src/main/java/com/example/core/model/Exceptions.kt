@@ -8,7 +8,7 @@ class NetworkErrorException : Exception()
 
 class NullResponseException : Exception()
 
-class CacheResponseException : Exception()
+class NullCacheException : Exception()
 
 class InvalidEmailException: Exception()
 

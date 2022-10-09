@@ -1,1 +1,12 @@
-<resources></resources>
+<resources>
+    <!-- item_event.xml -->
+    <string name="item_event_content_description_image">Imagem do evento</string>
+    <!-- fragment_event_list.xml -->
+    <string name="fragment_event_list_app_bar_title">Eventos</string>
+    <!-- EventListFragment -->
+    <string name="fragment_event_list_toolbar_text">Eventos</string>
+    <!-- fragment_event_details.xml -->
+    <string name="do_checkin_button_text">Realizar CheckIn</string>
+    <string name="image_content_description">Imagem do evento</string>
+    <string name="fragment_event_details_app_bar_title">Detalhes sobre o evento</string>
+</resources>

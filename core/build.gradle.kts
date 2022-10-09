@@ -37,4 +37,5 @@ android {
 
 dependencies {
     androidx()
+    implementation(Libs.GLIDE)
 }

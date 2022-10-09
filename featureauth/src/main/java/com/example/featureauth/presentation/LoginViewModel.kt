@@ -43,8 +43,12 @@ class LoginViewModel(
     fun doLogin(email: String, password: String, name: String) {
         viewModelScope.launch(dispatcher) {
 
-            when (val isValidEmail =
-                validateUserEmailUseCase.call(email)) {
+            val isValidEmail = validateUserEmailUseCase.call(email)
+            val isValidName = validateUserNameUseCase.call(name)
+            val isValidPassword =
+                validateUserPasswordUseCase.call(password)
+
+            when (isValidEmail) {
                 is Result.Error -> {
                     treatUserEmailResultsError(isValidEmail.exception)
                 }
@@ -52,7 +56,7 @@ class LoginViewModel(
                     _isValidUserEmail.postValue(EmailStatus.VALID)
                 }
             }
-            when (val isValidName = validateUserNameUseCase.call(name)) {
+            when (isValidName) {
                 is Result.Error -> {
                     treatUserNameResultsError(isValidName.exception)
                 }
@@ -61,8 +65,7 @@ class LoginViewModel(
                 }
             }
 
-            when (val isValidPassword =
-                validateUserPasswordUseCase.call(password)) {
+            when (isValidPassword) {
                 is Result.Error -> {
                     treatUserPasswordResultsError(isValidPassword.exception)
                 }
@@ -71,7 +74,7 @@ class LoginViewModel(
                 }
             }
 
-            val isAuthLogin = verifyIfLoginIsAuth()
+            val isAuthLogin = verifyIsAuthLogin(isValidEmail, isValidName, isValidPassword)
 
             if (isAuthLogin) {
                 _isLoading.postValue(true)
@@ -83,6 +86,13 @@ class LoginViewModel(
             _isLoading.postValue(false)
         }
     }
+
+    private fun verifyIsAuthLogin(
+        isValidEmail: Result<Unit>,
+        isValidName: Result<Unit>,
+        isValidPassword: Result<Unit>
+    ) = isValidEmail is Result.Success && isValidName is Result.Success &&
+            isValidPassword is Result.Success
 
     private fun treatUserNameResultsError(error: Exception) {
         if (error is EmptyNameException) {
@@ -107,10 +117,6 @@ class LoginViewModel(
             _isValidUserEmail.postValue(EmailStatus.INVALID)
         }
     }
-
-    private fun verifyIfLoginIsAuth() = _isValidUserEmail.value == EmailStatus.VALID &&
-            _isValidUserName.value == NameStatus.VALID &&
-            _isValidUserPassword.value == PasswordStatus.VALID
 
     private companion object {
         const val AUTH_DURATION = 2500L

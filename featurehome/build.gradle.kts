@@ -51,6 +51,7 @@ dependencies {
     lifecycle()
     androidTestImplementation(Libs.JUNIT_EXT)
     androidTestImplementation(Libs.ESPRESSO)
+    testImplementation(Libs.ARCH_CORE_TESTING)
     testImplementation(Libs.JUNIT4)
     testImplementation(Libs.MOCKK)
     implementation(Libs.GLIDE)

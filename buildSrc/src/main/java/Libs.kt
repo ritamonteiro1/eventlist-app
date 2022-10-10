@@ -24,6 +24,8 @@ object Libs {
         "com.github.bumptech.glide:glide:${Versions.GLIDE_VERSION}"
     const val PLAY_SERVICES =
         "com.google.android.gms:play-services-auth:${Versions.PLAY_SERVICES_VERSION}"
+    const val ARCH_CORE_TESTING =
+        "androidx.arch.core:core-testing:${Versions.ARCH_CORE_TESTING_VERSION}"
 }
 
 fun DependencyHandlerScope.androidx() {

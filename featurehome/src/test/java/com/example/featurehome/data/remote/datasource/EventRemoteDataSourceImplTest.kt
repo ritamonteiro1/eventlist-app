@@ -1,9 +1,8 @@
-package com.example.featurehome
+package com.example.featurehome.data.remote.datasource
 
 import com.example.core.model.Result
 import com.example.core.model.ServerErrorException
 import com.example.featurehome.data.mapper.toDomain
-import com.example.featurehome.data.remote.datasource.EventRemoteDataSourceImpl
 import com.example.featurehome.data.remote.model.EventDetailsResponse
 import com.example.featurehome.data.remote.model.EventResponse
 import com.example.featurehome.data.remote.service.EventService

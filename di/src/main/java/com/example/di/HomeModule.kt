@@ -14,8 +14,6 @@ import com.example.featurehome.domain.usecase.GetEventListUseCase
 import com.example.featurehome.domain.usecase.GetEventListUseCaseImpl
 import com.example.featurehome.presentation.eventdetails.EventDetailsViewModel
 import com.example.featurehome.presentation.eventlist.EventListViewModel
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -23,14 +21,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val homeModule = module {
     single<EventService> {
-        val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
-        val client: OkHttpClient = OkHttpClient.Builder()
-            .addInterceptor(logging)
-            .build()
         Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
-            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(EventService::class.java)

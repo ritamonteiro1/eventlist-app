@@ -32,21 +32,6 @@ class EventDetailsViewModelTest {
     }
 
     @Test
-    fun `GIVEN a getEventDetails THEN call getEventDetailsUseCase`() {
-        val id = 1
-        coEvery {
-            getEventDetailsUseCase.call(any())
-        } returns mockk(relaxed = true)
-
-        viewModel.getEventDetails(id)
-
-        coVerify(exactly = 1) {
-            getEventDetailsUseCase.call(any())
-        }
-    }
-
-
-    @Test
     fun `GIVEN a getEventDetails THEN it should shows is Loading State`() {
         val id = 1
         coEvery {

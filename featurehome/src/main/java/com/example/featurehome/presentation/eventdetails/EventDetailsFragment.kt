@@ -9,7 +9,9 @@ import androidx.navigation.fragment.navArgs
 import com.example.core.utils.createLoadingDialog
 import com.example.core.utils.downloadImage
 import com.example.core.utils.setupToolbar
+import com.example.core.utils.showToast
 import com.example.core.utils.toStringDate
+import com.example.featurehome.R
 import com.example.featurehome.databinding.FragmentEventDetailsBinding
 import getErrorMessage
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -44,11 +46,25 @@ class EventDetailsFragment : Fragment() {
 
     private fun setupObservers() {
         viewModel.stateEventDetails.observe(viewLifecycleOwner) { state ->
-            handleState(state)
+            handleEventDetailsState(state)
+        }
+        viewModel.stateDoCheckIn.observe(viewLifecycleOwner) { state ->
+            handleDoCheckInState(state)
         }
     }
 
-    private fun handleState(state: EventDetailsState) {
+    private fun handleDoCheckInState(state: DoCheckInState) {
+        when (state) {
+            is ErrorDoCheckIn -> {
+                showToast(getString(R.string.fragment_event_details_error_checkin))
+            }
+            is SuccessDoCheckIn -> {
+                showToast(getString(R.string.fragment_event_details_success_checkin))
+            }
+        }
+    }
+
+    private fun handleEventDetailsState(state: EventDetailsState) {
         when (state) {
             is ErrorEventDetails -> {
                 handleErrorStateEventDetails(state)
@@ -109,7 +125,7 @@ class EventDetailsFragment : Fragment() {
 
     private fun setOnClickDoCheckInButton() {
         binding.doCheckinButton.setOnClickListener {
-            //viewModel.doCheckIn(navArgs.eventId.)
+            viewModel.doCheckIn(navArgs.eventId)
         }
     }
 

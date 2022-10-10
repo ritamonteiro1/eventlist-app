@@ -45,7 +45,6 @@ dependencies {
     androidx()
     koin()
     retrofit()
-    implementation(Libs.HTTP_INTERCEPTOR)
     navigation()
     coroutines()
     lifecycle()

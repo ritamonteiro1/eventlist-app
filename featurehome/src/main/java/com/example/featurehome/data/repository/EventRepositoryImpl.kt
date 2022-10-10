@@ -3,6 +3,7 @@ package com.example.featurehome.data.repository
 import com.example.core.model.NullCacheException
 import com.example.core.model.Result
 import com.example.datalocal.datasource.EventCacheDataSource
+import com.example.datalocal.datasource.EventUserCacheDataSource
 import com.example.featurehome.data.mapper.toCache
 import com.example.featurehome.data.mapper.toDomain
 import com.example.featurehome.data.remote.datasource.EventRemoteDataSource
@@ -13,7 +14,8 @@ import com.example.featurehome.domain.repository.EventRepository
 
 class EventRepositoryImpl(
     private val remoteDataSource: EventRemoteDataSource,
-    private val eventCacheDataSource: EventCacheDataSource
+    private val eventCacheDataSource: EventCacheDataSource,
+    private val eventUserCacheDataSource: EventUserCacheDataSource
 ) : EventRepository {
     override suspend fun getEventList(): Result<List<Event>> {
         val result = remoteDataSource.getEventList()
@@ -35,7 +37,9 @@ class EventRepositoryImpl(
         } else getEventDetailsFromCache(id, result)
     }
 
-    override suspend fun doCheckIn(eventUser: EventUser): Result<Unit> {
+    override suspend fun doCheckIn(eventId: Int): Result<Unit> {
+        val userCredentials = eventUserCacheDataSource.getUserCredentials()
+        val eventUser = EventUser(userCredentials.name, userCredentials.email, eventId)
         return remoteDataSource.doCheckIn(eventUser)
     }
 

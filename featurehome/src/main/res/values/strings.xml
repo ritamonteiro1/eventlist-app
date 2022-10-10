@@ -9,4 +9,6 @@
     <string name="do_checkin_button_text">Realizar CheckIn</string>
     <string name="image_content_description">Imagem do evento</string>
     <string name="fragment_event_details_app_bar_title">Detalhes sobre o evento</string>
+    <string name="fragment_event_details_success_checkin">CheckIn realizado com sucesso!</string>
+    <string name="fragment_event_details_error_checkin">Ocorreu um erro ao realizar o CheckIn.</string>
 </resources>

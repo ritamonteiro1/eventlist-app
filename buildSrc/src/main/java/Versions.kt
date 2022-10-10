@@ -22,4 +22,5 @@ object Versions {
     const val MULTIDEX_VERSION = "2.0.1"
     const val STARTUP_VERSION = "1.1.1"
     const val PLAY_SERVICES_VERSION = "20.3.0"
+    const val ARCH_CORE_TESTING_VERSION = "2.1.0"
 }

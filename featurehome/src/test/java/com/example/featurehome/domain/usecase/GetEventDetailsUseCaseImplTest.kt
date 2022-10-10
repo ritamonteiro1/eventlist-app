@@ -1,28 +1,25 @@
-package com.example.featurehome.usecase
+package com.example.featurehome.domain.usecase
 
 import com.example.core.model.Result
-import com.example.featurehome.domain.model.Event
+import com.example.featurehome.domain.model.EventDetails
 import com.example.featurehome.domain.repository.EventRepository
-import com.example.featurehome.domain.usecase.GetEventListUseCaseImpl
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.After
-import org.junit.Assert.assertEquals
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
-@ExperimentalCoroutinesApi
-class GetEventListUseCaseImplTest {
+class GetEventDetailsUseCaseImplTest {
     private val repository: EventRepository = mockk()
-    private lateinit var getEventListUseCase: GetEventListUseCaseImpl
+    private lateinit var getEventDetailsUseCase: GetEventDetailsUseCaseImpl
 
     @Before
     fun setupMocks() {
-        getEventListUseCase = GetEventListUseCaseImpl(repository)
+        getEventDetailsUseCase = GetEventDetailsUseCaseImpl(repository)
     }
 
     @After
@@ -33,47 +30,46 @@ class GetEventListUseCaseImplTest {
     @Test
     fun `GIVEN a call THEN call repository`() =
         runBlocking {
+            val id = 1
 
             coEvery {
-                repository.getEventList()
+                repository.getEventDetails(any())
             } returns mockk(relaxed = true)
 
-            getEventListUseCase.call(
-            )
+            getEventDetailsUseCase.call(id)
 
             coVerify(exactly = 1) {
-                repository.getEventList()
+                repository.getEventDetails(any())
             }
         }
 
     @Test
-    fun `GIVEN a call WHEN request is successfully THEN it should returns an Event List`() =
+    fun `GIVEN a call WHEN request is successfully THEN it should returns an Event Details`() =
         runBlocking {
-
-            val expected: Result.Success<List<Event>> = mockk(relaxed = true)
+            val id = 1
+            val expected: Result.Success<EventDetails> = mockk(relaxed = true)
 
             coEvery {
-                repository.getEventList()
+                repository.getEventDetails(any())
             } returns expected
 
-            val result = getEventListUseCase.call()
+            val result = getEventDetailsUseCase.call(id)
 
-            assertEquals(expected, result)
+            Assert.assertEquals(expected, result)
         }
 
     @Test
     fun `GIVEN a call WHEN request is fail THEN it should returns an Result Error`() =
         runBlocking {
-
+            val id = 1
             val expected: Result.Error = mockk(relaxed = true)
 
             coEvery {
-                repository.getEventList()
+                repository.getEventDetails(any())
             } returns expected
 
-            val result = getEventListUseCase.call()
+            val result = getEventDetailsUseCase.call(id)
 
-            assertEquals(expected, result)
+            Assert.assertEquals(expected, result)
         }
-
 }

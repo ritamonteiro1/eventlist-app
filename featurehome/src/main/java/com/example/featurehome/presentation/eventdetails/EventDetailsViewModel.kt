@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.model.Result
-import com.example.featurehome.domain.model.EventUser
 import com.example.featurehome.domain.usecase.DoCheckInUseCase
 import com.example.featurehome.domain.usecase.GetEventDetailsUseCase
 import kotlinx.coroutines.Dispatchers
@@ -37,10 +36,9 @@ class EventDetailsViewModel(
         }
     }
 
-    fun doCheckIn(eventUser: EventUser) {
-        _stateDoCheckIn.postValue(LoadingDoCheckIn)
+    fun doCheckIn(eventId: Int) {
         viewModelScope.launch(dispatcher) {
-            when (val result = doCheckInUseCase.call(eventUser)) {
+            when (val result = doCheckInUseCase.call(eventId)) {
                 is Result.Error -> {
                     _stateDoCheckIn.postValue(ErrorDoCheckIn(result.exception))
                 }

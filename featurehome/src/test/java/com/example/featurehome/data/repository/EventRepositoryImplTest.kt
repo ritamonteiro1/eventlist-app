@@ -2,10 +2,9 @@ package com.example.featurehome.data.repository
 
 import com.example.core.model.Result
 import com.example.datalocal.datasource.EventCacheDataSource
+import com.example.datalocal.datasource.EventUserCacheDataSource
 import com.example.datalocal.model.EventDao
-import com.example.datalocal.model.EventDetailsDao
 import com.example.featurehome.data.remote.datasource.EventRemoteDataSource
-import com.example.featurehome.domain.model.EventDetails
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -21,12 +20,13 @@ import org.junit.Test
 class EventRepositoryImplTest {
     private val remoteDataSource: EventRemoteDataSource = mockk()
     private val cacheDataSource: EventCacheDataSource = mockk()
+    private val eventUserCacheDataSource: EventUserCacheDataSource = mockk()
     private lateinit var repository: EventRepositoryImpl
 
     @Before
     fun setupMocks() {
         repository =
-            EventRepositoryImpl(remoteDataSource, cacheDataSource)
+            EventRepositoryImpl(remoteDataSource, cacheDataSource, eventUserCacheDataSource)
     }
 
     @After

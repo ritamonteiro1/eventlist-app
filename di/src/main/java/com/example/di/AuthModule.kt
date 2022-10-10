@@ -1,5 +1,7 @@
 package com.example.di
 
+import com.example.featureauth.data.repository.UserRepositoryImpl
+import com.example.featureauth.domain.repository.UserRepository
 import com.example.featureauth.domain.usecase.ValidateUserEmailUseCase
 import com.example.featureauth.domain.usecase.ValidateUserEmailUseCaseImpl
 import com.example.featureauth.domain.usecase.ValidateUserNameUseCase
@@ -12,12 +14,15 @@ import org.koin.dsl.module
 
 val authModule = module {
 
+    single<UserRepository> {
+        UserRepositoryImpl(get())
+    }
     single<ValidateUserEmailUseCase> {
-        ValidateUserEmailUseCaseImpl()
+        ValidateUserEmailUseCaseImpl(get())
     }
 
     single<ValidateUserNameUseCase> {
-        ValidateUserNameUseCaseImpl()
+        ValidateUserNameUseCaseImpl(get())
     }
 
     single<ValidateUserPasswordUseCase> {

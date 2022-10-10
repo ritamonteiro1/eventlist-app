@@ -41,7 +41,7 @@ val homeModule = module {
     }
 
     single<EventRepository> {
-        EventRepositoryImpl(get(), get())
+        EventRepositoryImpl(get(), get(), get())
     }
 
     single<DoCheckInUseCase> {

@@ -16,10 +16,9 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="240dp"
-            android:layout_height="140dp"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
             android:layout_marginStart="@dimen/margin_x"
-            android:layout_marginTop="@dimen/margin_xx"
             android:layout_marginEnd="@dimen/margin_x"
             android:contentDescription="@string/item_event_content_description_image"
             android:gravity="center"
